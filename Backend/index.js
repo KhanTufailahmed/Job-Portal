@@ -1,7 +1,7 @@
 import express, { json, urlencoded } from "express";
 const app = express();
 import cookieParser from "cookie-parser";
-import cros from "cors";
+import cors from "cors";
 import { config } from "dotenv";
 import connectDB from "./utils/db.js";
 import userRoute from "./routes/user.route.js";
@@ -15,10 +15,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOption = {
-  origin: "http//localhost:5173",
-  Credential: true,
+  origin: "http://localhost:5173",
+  credentials: true, 
 };
-app.use(cros(corsOption));
+app.use(cors(corsOption));
 
 const PORT = process.env.PORT || 3000;
 
