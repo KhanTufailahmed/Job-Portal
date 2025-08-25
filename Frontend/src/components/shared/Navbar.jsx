@@ -1,12 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { LogOut, User2 } from "lucide-react";
+import { useSelector } from "react-redux";
+import { toast } from "sonner";
+import { USER_API_END_POINT } from "@/utils/constant";
+import axios from "axios";
 
 const Navbar = () => {
-  let user = false;
+  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  const logOut = async () => {
+    try {
+      const res = await axios.get(`${USER_API_END_POINT}/logout`, {
+        withCredentials: true,
+      });
+      console.log(res);
+      if (res.data.success) {
+        navigate("/login");
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
   return (
     <div className="bg-white border-md border-gray-400 shadow-md">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
@@ -74,11 +93,16 @@ const Navbar = () => {
                   <div className="flex flex-col my-2 ">
                     <div className="flex items-center w-fit cursor-pointer gap-2">
                       <User2></User2>
-                      <Button variant="link">View Profile</Button>
+                      <Link to={`/profile`}>
+                        {" "}
+                        <Button variant="link">View Profile</Button>
+                      </Link>
                     </div>
                     <div className="flex items-center w-fit cursor-pointer gap-2">
                       <LogOut></LogOut>
-                      <Button variant="link">Logout</Button>
+                      <Button variant="link" onClick={logOut}>
+                        Logout
+                      </Button>
                     </div>
                   </div>
                 </div>

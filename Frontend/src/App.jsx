@@ -1,12 +1,11 @@
 import React from "react";
-import { Button } from "./components/ui/button";
-import Navbar from "./components/shared/Navbar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Home from "./components/Home";
-import Footer from "./components/shared/Footer";
 import Jobs from "./components/Jobs";
+import Browse from "./components/Browse";
+import Profile from "./components/Profile";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -21,16 +20,23 @@ const appRouter = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path:"/jobs",
-    element:<Jobs></Jobs>
-  }
+    path: "/jobs",
+    element: <Jobs></Jobs>,
+  },
+  {
+    path: "/browse",
+    element: <Browse></Browse>,
+  },
+  {
+    path: "/profile",
+    element: <Profile></Profile>,
+  },
 ]);
 
 const App = () => {
   return (
     <div>
       <RouterProvider router={appRouter}></RouterProvider>
-     
     </div>
   );
 };
