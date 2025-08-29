@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { USER_API_END_POINT } from "@/utils/constant";
 import axios from "axios";
 import { setUser } from "@/redux/authSlice";
+import { setAllJobs, setSingleJob } from "@/redux/jobSlice";
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
@@ -22,6 +23,8 @@ const Navbar = () => {
       console.log(res);
       if (res.data.success) {
         dispatch(setUser(null));
+        dispatch(setAllJobs([]));
+        dispatch(setSingleJob(null));
         navigate("/");
         toast.success(res.data.message);
       }
