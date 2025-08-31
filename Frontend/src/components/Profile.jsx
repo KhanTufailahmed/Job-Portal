@@ -23,11 +23,11 @@ const Profile = () => {
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
             <Avatar className={`w-24 h-24`}>
-              <AvatarImage src={user.profile.profilePhoto} alt="@shadcn" />
+              <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
             </Avatar>
             <div>
-              <h1 className="font-medium text-xl">{user.fullname}</h1>
-              <p>{user.profile.bio}</p>
+              <h1 className="font-medium text-xl">{user?.fullname}</h1>
+              <p>{user?.profile.bio}</p>
             </div>
           </div>
           <Button
@@ -41,17 +41,17 @@ const Profile = () => {
         <div className="my-4">
           <div className="flex items-center gap-3 my-2">
             <Mail></Mail>
-            <span>{user.email}</span>
+            <span>{user?.email}</span>
           </div>
           <div className="flex items-center gap-3 my-2">
             <Contact></Contact>
-            <span>{user.phoneNumber}</span>
+            <span>{user?.phoneNumber}</span>
           </div>
         </div>
         <div className="my-5">
           <h1>Skills</h1>
-          {user.profile.skills.length != 0 ? (
-            user.profile.skills.map((item, index) => (
+          {user?.profile?.skills?.length != 0 ? (
+            user?.profile?.skills?.map((item, index) => (
               <Badge className={`m-1`} key={index}>
                 {item}
               </Badge>
@@ -65,10 +65,10 @@ const Profile = () => {
           {isResume ? (
             <a
               target="blank"
-              href={user.profile.resume}
+              href={user?.profile?.resume}
               className="text-blue-500 w-full hover:underline"
             >
-              {user.profile.resumeOriginalName}
+              {user?.profile?.resumeOriginalName}
             </a>
           ) : (
             <span>No Resume</span>

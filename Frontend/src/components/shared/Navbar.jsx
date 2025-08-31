@@ -25,7 +25,7 @@ const Navbar = () => {
         dispatch(setUser(null));
         dispatch(setAllJobs([]));
         dispatch(setSingleJob(null));
-        navigate("/");
+        navigate("/login");
         toast.success(res.data.message);
       }
     } catch (error) {
@@ -42,17 +42,32 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-12">
           <ul className="flex items-center gap-5 font-medium justify-content-end">
-            <li>
-              {" "}
-              <Link to={"/"}> Home</Link>
-            </li>
-            <li>
-              {" "}
-              <Link to={"/jobs"}>Jobs</Link>
-            </li>
-            <li>
-              <Link to={"/browse"}>Browse</Link>
-            </li>
+            {user && user.role === "recruiter" ? (
+              <>
+                <li>
+                  {" "}
+                  <Link to={"/admin/companies"}> Companies</Link>
+                </li>
+                <li>
+                  {" "}
+                  <Link to={"/admin/jobs"}>Jobs</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  {" "}
+                  <Link to={"/"}> Home</Link>
+                </li>
+                <li>
+                  {" "}
+                  <Link to={"/jobs"}>Jobs</Link>
+                </li>
+                <li>
+                  <Link to={"/browse"}>Browse</Link>
+                </li>
+              </>
+            )}
           </ul>
           {!user ? (
             <div className="flex items-center gap-2">
@@ -74,10 +89,7 @@ const Navbar = () => {
             <Popover>
               <PopoverTrigger asChild>
                 <Avatar className={`cursor-pointer w-10 h-10`}>
-                  <AvatarImage
-                    src={user.profile.profilePhoto}
-                    alt="@shadcn"
-                  />
+                  <AvatarImage src={user.profile.profilePhoto} alt="@shadcn" />
                 </Avatar>
               </PopoverTrigger>
               <PopoverContent className={`w-80 m-4`}>
@@ -97,19 +109,32 @@ const Navbar = () => {
                     </div>
                   </div>
                   <div className="flex flex-col my-2 ">
-                    <div className="flex items-center w-fit cursor-pointer gap-2">
-                      <User2></User2>
-                      <Link to={`/profile`}>
-                        {" "}
-                        <Button variant="link">View Profile</Button>
-                      </Link>
-                    </div>
-                    <div className="flex items-center w-fit cursor-pointer gap-2">
-                      <LogOut></LogOut>
-                      <Button variant="link" onClick={logOut}>
-                        Logout
-                      </Button>
-                    </div>
+                    {user && user.role === "student" ? (
+                      <>
+                        <div className="flex items-center w-fit cursor-pointer gap-2">
+                          <User2></User2>
+                          <Link to={`/profile`}>
+                            {" "}
+                            <Button variant="link">View Profile</Button>
+                          </Link>
+                        </div>
+                        <div className="flex items-center w-fit cursor-pointer gap-2">
+                          <LogOut></LogOut>
+                          <Button variant="link" onClick={logOut}>
+                            Logout
+                          </Button>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex items-center w-fit cursor-pointer gap-2">
+                          <LogOut></LogOut>
+                          <Button variant="link" onClick={logOut}>
+                            Logout
+                          </Button>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </PopoverContent>
