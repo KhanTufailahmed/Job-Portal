@@ -3,17 +3,17 @@ import Navbar from "../shared/Navbar";
 import Footer from "../shared/Footer";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import CompaniesTable from "./CompaniesTable";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setSearchCompanyByText } from "@/redux/companySlice";
+import AdminJobsTable from "./AdminJobsTable";
+import { setSearchJobByText } from "@/redux/jobSlice";
 
-const Companies = () => {
+const AdminJobs = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   useEffect(() => {
-    dispatch(setSearchCompanyByText(input));
+    dispatch(setSearchJobByText(input));
   }, [input]);
   return (
     <div>
@@ -30,14 +30,14 @@ const Companies = () => {
               navigate("/admin/companies/create");
             }}
           >
-            New Company
+            New Jobs
           </Button>
         </div>
-        <CompaniesTable></CompaniesTable>
+        <AdminJobsTable></AdminJobsTable>
       </div>
       <Footer></Footer>
     </div>
   );
 };
 
-export default Companies;
+export default AdminJobs;
