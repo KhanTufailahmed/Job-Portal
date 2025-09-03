@@ -27,7 +27,7 @@ const AdminJobs = () => {
           ></Input>
           <Button
             onClick={() => {
-              navigate("/admin/companies/create");
+              navigate("/admin/jobs/create");
             }}
           >
             New Jobs

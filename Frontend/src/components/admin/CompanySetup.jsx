@@ -73,7 +73,7 @@ const CompanySetup = () => {
   };
 
   useEffect(() => {
-    if(!singleCompany) return
+    if (!singleCompany) return;
     setInput({
       name: singleCompany.name || "",
       description: singleCompany.description || "",
@@ -150,10 +150,8 @@ const CompanySetup = () => {
           </div>
           {loading ? (
             <Button className={`w-full`}>
-              <Loader2 className="mr-2 h-4 w-full animate-spin">
-                {" "}
-                Please wait
-              </Loader2>
+              <Loader2 className="mr-2 h-4 w-full animate-spin"> </Loader2>{" "}
+              Please wait
             </Button>
           ) : (
             <Button type="submit" className={` w-full cursor-pointer`}>

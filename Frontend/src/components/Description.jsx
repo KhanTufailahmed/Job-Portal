@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Navbar from "./shared/Navbar";
 import Footer from "./shared/Footer";
 import { Badge } from "./ui/badge";
@@ -42,7 +42,7 @@ const Description = () => {
       }
     };
     fetchSingleJobs();
-  }, [jobId, user?._id]);
+  }, [jobId, user?._id,dispatch]);
   // const isApplied = false;
 
   // const isApplied = singleJob?.applications?.length ?? 0.some(

@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, setUser } from "@/redux/authSlice";
-import { Ellipsis, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -18,9 +18,9 @@ const Login = () => {
     password: "",
     role: "",
   });
-  const {loading}=useSelector(store=>store.auth)
+  const { loading } = useSelector((store) => store.auth);
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -28,7 +28,7 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      dispatch(setLoading(true))
+      dispatch(setLoading(true));
       const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
         headers: {
           "Content-Type": "application/json",
@@ -36,15 +36,15 @@ const Login = () => {
         withCredentials: true,
       });
       if (res.data.success) {
-        dispatch(setUser(res.data.user))
+        dispatch(setUser(res.data.user));
         navigate("/");
         toast.success(res.data.message);
       }
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
-    }finally{
-      dispatch(setLoading(false))
+    } finally {
+      dispatch(setLoading(false));
     }
   };
   return (
@@ -110,10 +110,8 @@ const Login = () => {
           <div className="flex items-center">
             {loading ? (
               <Button className={`w-full`}>
-                <Loader2 className="mr-2 h-4 w-full animate-spin">
-                  {" "}
-                  Please wait
-                </Loader2>
+                <Loader2 className="mr-2 h-4 w-full animate-spin"> </Loader2>{" "}
+                Please wait
               </Button>
             ) : (
               <Button type="submit" className={` w-full cursor-pointer`}>

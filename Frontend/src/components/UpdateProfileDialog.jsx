@@ -157,10 +157,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             <DialogFooter>
               {loading ? (
                 <Button className={`w-full`}>
-                  <Loader2 className="mr-2 h-4 w-full animate-spin">
-                    {" "}
-                    Please wait
-                  </Loader2>
+                  <Loader2 className="mr-2 h-4 w-full animate-spin"> </Loader2>{" "}
+                  Please wait
                 </Button>
               ) : (
                 <Button type="submit" className={` w-full cursor-pointer`}>
