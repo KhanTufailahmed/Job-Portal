@@ -1,8 +1,9 @@
-import React from 'react'
-import { Button } from './ui/button';
-import { Search } from 'lucide-react';
+import React, { use } from "react";
+import { Button } from "./ui/button";
+import { Search } from "lucide-react";
 
 const HeroSection = () => {
+  const [query, setQuery] = useState("");
   return (
     <div className="text-center">
       <div className="flex flex-col gap-5 my-10">
@@ -13,9 +14,9 @@ const HeroSection = () => {
           Search,Apply & <br /> Get Your{" "}
           <span className="text-[#6A38C2]">Dream Jobs</span>
         </h1>
-        <p className=''>
-        Discover exciting job opportunities, connect with employers, and find the role that's meant for you—today.
-        
+        <p className="">
+          Discover exciting job opportunities, connect with employers, and find
+          the role that's meant for you—today.
         </p>
         <div className="flex w-[40%] shadow-lg border border-gray-300 rounded-full pl-3 items-center gap-4 mx-auto h-10">
           <input
@@ -32,6 +33,6 @@ const HeroSection = () => {
       </div>
     </div>
   );
-}
+};
 
-export default HeroSection
+export default HeroSection;
