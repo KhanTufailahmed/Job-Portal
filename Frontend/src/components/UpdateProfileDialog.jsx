@@ -59,7 +59,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
           withCredentials: true,
         }
       );
-      console.log(res);
       if (res.data.success) {
         dispatch(setUser(res.data.user));
         toast.success(res.data.message);

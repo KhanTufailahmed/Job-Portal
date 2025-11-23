@@ -13,7 +13,6 @@ const Applicants = () => {
   const jobId = params.id;
   const dispatch = useDispatch();
   const applicants = useSelector((state) => state.application.applicants);
-  console.log("this is",applicants);
   useEffect(() => {
     const fetchAllApplicants = async () => {
       try {
@@ -23,7 +22,6 @@ const Applicants = () => {
             withCredentials: true,
           }
         );
-        console.log(res);
         dispatch(setAllApplicants(res.data.job));
       } catch (error) {
         console.log(error);

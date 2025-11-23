@@ -22,7 +22,6 @@ const AdminJobsTable = () => {
   const searchJobByText = useSelector((state) => state.company.searchJobByText);
   const [filterJobs, setFilterJobs] = useState(allAdminJobs);
   useEffect(() => {
-    console.log(allAdminJobs)
     const filteredJob = allAdminJobs?.filter((job) => {
       if (!searchJobByText) {
         return true;

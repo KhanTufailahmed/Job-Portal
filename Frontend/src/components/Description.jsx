@@ -31,7 +31,6 @@ const Description = () => {
         });
         if (res.data.success) {
           dispatch(setSingleJob(res.data.job));
-          console.log(res.data.job.applications);
           setIsApplied(
             res.data.job.applications.some(
               (application) => application.applicant === user?._id

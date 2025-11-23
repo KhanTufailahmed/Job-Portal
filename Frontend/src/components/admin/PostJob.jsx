@@ -37,23 +37,14 @@ const PostJob = () => {
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-  //company?.name?.toLowerCase === value
   const selectChangeHandler = (value) => {
-    // const selectedCompany = allCompany.find((company) => {
-    //   const match = company.name.toLowerCase() === value;
-    //   console.log("Checking:", company.name, "→ match?", match);
-    //   return match; // <-- IMPORTANT!
-    // });
-    // console.log(value);
     const selectedCompany = allCompany.find(
       (company) => company.name.toLowerCase() === value.toLowerCase()
     );
-    // console.log(selectedCompany);
     setInput({ ...input, companyId: selectedCompany?._id });
   };
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(input);
     try {
       setLoading(true);
       const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {

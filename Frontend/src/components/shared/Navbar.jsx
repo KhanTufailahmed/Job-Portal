@@ -21,7 +21,6 @@ const Navbar = () => {
       const res = await axios.get(`${USER_API_END_POINT}/logout`, {
         withCredentials: true,
       });
-      console.log(res);
       if (res.data.success) {
         dispatch(setUser(null));
         dispatch(setAllJobs([]));

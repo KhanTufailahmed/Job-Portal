@@ -22,7 +22,6 @@ const ApplicantsTable = () => {
   const applicants = useSelector((state) => state.application.applicants);
 
   const statusHandler = async (status, id) => {
-    console.log(status, id);
     try {
       // axios.defaults.withCredentials = true;
       const res = await axios.post(
@@ -34,7 +33,6 @@ const ApplicantsTable = () => {
           withCredentials: true,
         }
       );
-      console.log(res);
       if (res.data.success) {
         toast.success(res.data.message);
       }
