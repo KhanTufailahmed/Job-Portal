@@ -7,6 +7,9 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setSearchQuery } from "@/redux/jobSlice";
 
 const category = [
   "Forntend Developer",
@@ -19,13 +22,20 @@ const category = [
   "Data Scientist",
 ];
 const CategoryCarousel = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const searchJobHandler = (query) => {
+    console.log(query);
+      dispatch(setSearchQuery(query));
+      navigate("/browse")
+    };
   return (
     <div>
       <Carousel className={`w-full mx-auto my-20 max-w-xl`}>
         <CarouselContent>
           {category.map((cat) => (
             <CarouselItem className={`md:basis-1/2 lg:basis-1/3`}>
-              <Button
+              <Button onClick={()=>searchJobHandler(cat)}
                 variant={`outline`}
                 className={`rounded-full cursor-pointer `}
               >
